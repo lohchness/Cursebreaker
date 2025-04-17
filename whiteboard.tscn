@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ghhb13p6d2l"]
+
+[ext_resource type="Script" uid="uid://rm5qmuringpc" path="res://pen.gd" id="1_x0b4i"]
+
+[node name="Whiteboard" type="Node2D"]
+script = ExtResource("1_x0b4i")
