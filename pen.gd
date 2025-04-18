@@ -9,6 +9,11 @@ var segment_max_distance = 20
 
 var in_motion = false
 
+enum {SIMPLE_STRAIGHT, COMPLEX_STRAIGHT, CURVE, CONNECTOR, INVALID}
+const STRAIGHT_LINE_DEGREE_THRESHOLD = 20.0
+const COMPLEX_STRAIGHT_DEGREE_MIN = 50.0
+const COMPLEX_STRAIGHT_DEGREE_MAX = 180.0
+
 func _draw():
 	# Draw every submitted stroke
 	for i in range(len(all_strokes)):
@@ -33,11 +38,13 @@ func _input(event: InputEvent) -> void:
 			
 			#curr_stroke_points.append(last_pos)
 			
+			# Sends stored Vector2s into the Stroke class
 			if len(curr_stroke_points) > 1:
-				var stroke = Stroke.new()
-				stroke.stroke_points = curr_stroke_points
-				stroke.classify_stroke()
-				all_strokes.append(stroke)
+				classify_stroke(curr_stroke_points)
+				#var stroke = Stroke.new()
+				#stroke.stroke_points = curr_stroke_points
+				#stroke.classify_stroke()
+				#all_strokes.append(stroke)
 			
 			curr_stroke_points = []
 	
@@ -47,3 +54,58 @@ func _input(event: InputEvent) -> void:
 			curr_stroke_points.append(last_pos)
 			
 			queue_redraw()
+
+func classify_stroke(stroke_points: Array[Vector2]):
+	var substrokes: Array[Array] = [[]] # Only complex straight lines will have more than 1 element
+	
+	print("Number of points: " + str(len(stroke_points)))
+	
+	var theta_zero = angle_theta(stroke_points[0], stroke_points[1])
+	print("Theta Zero: " + str(theta_zero))
+	
+	var last_angle_difference = theta_zero
+	var stroke_type = SIMPLE_STRAIGHT
+	
+	for i in range(1, len(stroke_points) - 1):
+		var angle_difference = abs(angle_theta(stroke_points[i], stroke_points[i+1]) - theta_zero)
+		if angle_difference >= STRAIGHT_LINE_DEGREE_THRESHOLD:
+			
+			var abrupt_angle_difference = angle_difference - last_angle_difference
+			
+			if COMPLEX_STRAIGHT_DEGREE_MIN < abrupt_angle_difference and abrupt_angle_difference < COMPLEX_STRAIGHT_DEGREE_MAX:
+				# Is a complex straight. Segment this.
+				substrokes.append([])
+				theta_zero = angle_theta(stroke_points[i], stroke_points[i+1])
+				print("New Theta Zero: " + str(theta_zero))
+				if stroke_type == SIMPLE_STRAIGHT:
+					stroke_type = COMPLEX_STRAIGHT
+				if stroke_type == CURVE:
+					stroke_type = INVALID
+				
+				# new theta zero means new angle difference, for printing purposes
+				angle_difference = abs(angle_theta(stroke_points[i], stroke_points[i+1]) - theta_zero)
+			else:
+				
+				if stroke_type == SIMPLE_STRAIGHT:
+					stroke_type = CURVE
+				if stroke_type == COMPLEX_STRAIGHT:
+					stroke_type = INVALID
+		
+		print("Theta - Theta Zero: " + str(angle_difference))
+		last_angle_difference = angle_difference
+		
+		substrokes[-1].append(stroke_points[i])
+	
+	match stroke_type:
+		SIMPLE_STRAIGHT:
+			# Determine direction
+			print("SIMPLE STRAIGHT")
+		COMPLEX_STRAIGHT:
+			print("COMPLEX STRAIGHT")
+		CURVE:
+			print("CURVE")
+		_:
+			print("INVALID")
+
+func angle_theta(a: Vector2, b: Vector2) -> float:
+	return rad_to_deg(a.angle_to_point(b))
