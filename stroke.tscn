@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" uid="uid://daliidbfgsf0u" path="res://stroke.gd" id="1_k1uwf"]
 
-[node name="Stroke" type="Node2D"]
+[node name="Stroke" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_k1uwf")
