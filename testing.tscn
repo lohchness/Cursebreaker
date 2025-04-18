@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjxp2p4ux1von"]
+[gd_scene load_steps=4 format=3 uid="uid://bjxp2p4ux1von"]
 
 [ext_resource type="Script" uid="uid://cc5hj17xp4o21" path="res://testing.gd" id="1_qrja6"]
 
@@ -8,14 +8,6 @@ b = Vector2(203, 107)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_qrja6"]
 a = Vector2(302, 207)
 b = Vector2(203, 107)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_feb8i"]
-a = Vector2(215, 93)
-b = Vector2(379, 86)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_kj3p2"]
-a = Vector2(132, 189)
-b = Vector2(215, 93)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_qrja6")
@@ -33,9 +25,10 @@ shape = SubResource("SegmentShape2D_qrja6")
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-shape = SubResource("SegmentShape2D_feb8i")
+shape = SubResource("SegmentShape2D_co24e")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
-shape = SubResource("SegmentShape2D_kj3p2")
+shape = SubResource("SegmentShape2D_qrja6")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_area_entered"]
