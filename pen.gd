@@ -44,6 +44,7 @@ func _input(event: InputEvent) -> void:
 				var s = classify_stroke(curr_stroke_points)
 				if s != null:
 					all_strokes.append(s)
+					add_child(s)
 			
 			curr_stroke_points = []
 			
@@ -107,6 +108,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	# Add last vector to substrokes
 	substrokes[-1].append(stroke_points[-1])
 	
+	
 	if stroke_type == SIMPLE_STRAIGHT:
 		if len(substrokes[-1]) < 10:
 			stroke_type = INVALID
@@ -131,6 +133,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	
 	var stroke: Stroke = Stroke.new()
 	stroke.create_stroke(substrokes)
+	stroke.stroke_type = stroke_type
 	
 	return stroke
 
