@@ -34,6 +34,8 @@ func _draw():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("incant"):
+		for i in range(len(drawn_strokes)):
+			drawn_strokes[i].move_to_submitted()
 		# Append drawn_strokes to submitted_strokes
 		submitted_strokes.append_array(drawn_strokes)
 		drawn_strokes = []
@@ -152,7 +154,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	
 	var stroke: Stroke = Stroke.new()
 	stroke.create_stroke(substrokes)
-	stroke.stroke_type = stroke_type
+	stroke.assign_type(stroke_type)
 	
 	return stroke
 
