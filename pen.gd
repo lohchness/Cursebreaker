@@ -13,6 +13,7 @@ var in_motion = false
 const STRAIGHT_LINE_DEGREE_THRESHOLD = 20.0
 const COMPLEX_STRAIGHT_DEGREE_MIN = 50.0
 const COMPLEX_STRAIGHT_DEGREE_MAX = 180.0
+const strokescene = preload("res://stroke.tscn")
 
 func _draw():
 	# Draw every submitted stroke
@@ -152,7 +153,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	if stroke_type == Globals.INVALID:
 		return null
 	
-	var stroke: Stroke = Stroke.new()
+	var stroke: Stroke = strokescene.instantiate()
 	stroke.create_stroke(substrokes)
 	stroke.assign_type(stroke_type)
 	
