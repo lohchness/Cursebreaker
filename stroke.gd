@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 class_name Stroke
 
 ## A stroke is made up of Vector2s
