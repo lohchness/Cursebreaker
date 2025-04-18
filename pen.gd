@@ -10,7 +10,6 @@ var segment_max_distance = 20
 
 var in_motion = false
 
-enum {DEFAULT, SIMPLE_STRAIGHT, COMPLEX_STRAIGHT, CURVE, CONNECTOR, INVALID}
 const STRAIGHT_LINE_DEGREE_THRESHOLD = 20.0
 const COMPLEX_STRAIGHT_DEGREE_MIN = 50.0
 const COMPLEX_STRAIGHT_DEGREE_MAX = 180.0
@@ -86,7 +85,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	print("Theta Zero: " + str(theta_zero))
 	
 	var last_angle_difference = theta_zero
-	var stroke_type = SIMPLE_STRAIGHT
+	var stroke_type = Globals.SIMPLE_STRAIGHT
 	
 	# Add first vector to substroke
 	substrokes[-1].append(stroke_points[0])
@@ -106,19 +105,19 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 				substrokes.append([])
 				theta_zero = angle_theta(stroke_points[i], stroke_points[i+1])
 				print("New Theta Zero: " + str(theta_zero))
-				if stroke_type == SIMPLE_STRAIGHT:
-					stroke_type = COMPLEX_STRAIGHT
-				if stroke_type == CURVE:
-					stroke_type = INVALID
+				if stroke_type == Globals.SIMPLE_STRAIGHT:
+					stroke_type = Globals.COMPLEX_STRAIGHT
+				if stroke_type == Globals.CURVE:
+					stroke_type = Globals.INVALID
 				
 				# new theta zero means new angle difference, for printing purposes
 				angle_difference = abs(angle_theta(stroke_points[i], stroke_points[i+1]) - theta_zero)
 			else:
 				# Curve if otherwise.
-				if stroke_type == SIMPLE_STRAIGHT:
-					stroke_type = CURVE
-				if stroke_type == COMPLEX_STRAIGHT:
-					stroke_type = INVALID
+				if stroke_type == Globals.SIMPLE_STRAIGHT:
+					stroke_type = Globals.CURVE
+				if stroke_type == Globals.COMPLEX_STRAIGHT:
+					stroke_type = Globals.INVALID
 		
 		print("Theta - Theta Zero: " + str(angle_difference))
 		last_angle_difference = angle_difference
@@ -129,26 +128,26 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	substrokes[-1].append(stroke_points[-1])
 	
 	
-	if stroke_type == SIMPLE_STRAIGHT:
+	if stroke_type == Globals.SIMPLE_STRAIGHT:
 		if len(substrokes[-1]) < 10:
-			stroke_type = INVALID
+			stroke_type = Globals.INVALID
 		if len(substrokes[-1]) < 7:
-			stroke_type = CONNECTOR
+			stroke_type = Globals.CONNECTOR
 	
 	match stroke_type:
-		SIMPLE_STRAIGHT:
+		Globals.SIMPLE_STRAIGHT:
 			# Determine direction
 			print("SIMPLE STRAIGHT")
-		COMPLEX_STRAIGHT:
+		Globals.COMPLEX_STRAIGHT:
 			print("COMPLEX STRAIGHT")
-		CURVE:
+		Globals.CURVE:
 			print("CURVE")
-		CONNECTOR:
+		Globals.CONNECTOR:
 			print("CONNECTOR")
 		_:
 			print("INVALID")
 	
-	if stroke_type == INVALID:
+	if stroke_type == Globals.INVALID:
 		return null
 	
 	var stroke: Stroke = Stroke.new()
