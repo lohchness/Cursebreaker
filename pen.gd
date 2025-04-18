@@ -1,7 +1,7 @@
 extends Node2D
 
-var submitted_strokes: Array = []
-var drawn_strokes: Array = []
+var submitted_strokes: Array[Stroke] = []
+var drawn_strokes: Array[Stroke] = []
 var curr_stroke_points: Array[Vector2] = []
 
 var last_pos: Vector2
@@ -36,10 +36,16 @@ func _draw():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("incant"):
 		# Append drawn_strokes to submitted_strokes
-		pass
-	if event.is_action("dispel"):
+		submitted_strokes.append_array(drawn_strokes)
+		drawn_strokes = []
+		queue_redraw()
+	
+	if event.is_action_pressed("dispel"):
 		# Free strokes in drawn_strokes and empty array
-		pass
+		for i in range(len(drawn_strokes)):
+			drawn_strokes[i].queue_free()
+		drawn_strokes = []
+		queue_redraw()
 	
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("brush"):
