@@ -18,9 +18,9 @@ const COMPLEX_STRAIGHT_DEGREE_MAX = 180.0
 func _draw():
 	# Draw every submitted stroke
 	for i in range(len(submitted_strokes)):
-		for j in range(len(drawn_strokes[i].stroke_points)):
+		for j in range(len(submitted_strokes[i].stroke_points)):
 			for k in range(1, len(submitted_strokes[i].stroke_points[j])):
-				draw_line(submitted_strokes[i].stroke_points[j][k-1], submitted_strokes[i].stroke_points[j][k]. Color.BLACK, 5)
+				draw_line(submitted_strokes[i].stroke_points[j][k-1], submitted_strokes[i].stroke_points[j][k], Color.BLACK, 5)
 	
 	# Draw every stroke that is pending submission
 	for i in range(len(drawn_strokes)):
