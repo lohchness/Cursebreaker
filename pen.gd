@@ -1,6 +1,7 @@
 extends Node2D
 
-var all_strokes: Array = []
+var submitted_strokes: Array = []
+var drawn_strokes: Array = []
 var curr_stroke_points: Array[Vector2] = []
 
 var last_pos: Vector2
@@ -16,10 +17,16 @@ const COMPLEX_STRAIGHT_DEGREE_MAX = 180.0
 
 func _draw():
 	# Draw every submitted stroke
-	for i in range(len(all_strokes)):
-		for j in range(len(all_strokes[i].stroke_points)):
-			for k in range(1, len(all_strokes[i].stroke_points[j])):
-				draw_line(all_strokes[i].stroke_points[j][k-1], all_strokes[i].stroke_points[j][k], Color.BLACK, 5)
+	for i in range(len(submitted_strokes)):
+		for j in range(len(drawn_strokes[i].stroke_points)):
+			for k in range(1, len(submitted_strokes[i].stroke_points[j])):
+				draw_line(submitted_strokes[i].stroke_points[j][k-1], submitted_strokes[i].stroke_points[j][k]. Color.BLACK, 5)
+	
+	# Draw every stroke that is pending submission
+	for i in range(len(drawn_strokes)):
+		for j in range(len(drawn_strokes[i].stroke_points)):
+			for k in range(1, len(drawn_strokes[i].stroke_points[j])):
+				draw_line(drawn_strokes[i].stroke_points[j][k-1], drawn_strokes[i].stroke_points[j][k], Color.BLACK, 5)
 	
 	# Draw current stroke being drawn (not submitted)
 	for i in range(len(curr_stroke_points) - 1):
@@ -27,6 +34,13 @@ func _draw():
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("incant"):
+		# Append drawn_strokes to submitted_strokes
+		pass
+	if event.is_action("dispel"):
+		# Free strokes in drawn_strokes and empty array
+		pass
+	
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("brush"):
 			in_motion = true
@@ -43,7 +57,7 @@ func _input(event: InputEvent) -> void:
 			if len(curr_stroke_points) > 1:
 				var s = classify_stroke(curr_stroke_points)
 				if s != null:
-					all_strokes.append(s)
+					drawn_strokes.append(s)
 					add_child(s)
 			
 			curr_stroke_points = []
