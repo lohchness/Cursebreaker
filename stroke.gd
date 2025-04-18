@@ -8,4 +8,8 @@ class_name Stroke
 
 var stroke_type
 
-var stroke_points: Array[Vector2] = []
+var stroke_points: Array[Array] = [[]]
+
+func create_stroke(substrokes: Array[Array]):
+	stroke_points = substrokes
+	
