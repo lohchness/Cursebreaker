@@ -30,17 +30,18 @@ func create_stroke(substrokes: Array[Array]):
 func assign_type(type):
 	stroke_type = type
 	
-	#collision_layer = 4 | 8
+	# All strokes look for everything. Correctness checked in verification stage
+	collision_mask = 1|2|4|8
 	
 	match stroke_type:
 		Globals.CONNECTOR:
-			# As a drawn connector I am looking to connect to strokes
-			collision_mask = 1 | 4
+			## As a drawn connector I am looking to connect to strokes
+			#collision_mask = 1 | 4
 			
 			collision_layer = 8
 		_:
-			# As a drawn stroke I am looking to connect to connectors
-			collision_mask = 2 | 8
+			## As a drawn stroke I am looking to connect to connectors
+			#collision_mask = 2 | 8
 			
 			collision_layer = 4
 	
