@@ -9,6 +9,8 @@ class_name Stroke
 var stroke_points: Array[Array] = [[]]
 var stroke_type
 
+#var connected_to = Array[Stroke]
+
 func create_stroke(substrokes: Array[Array]):
 	stroke_points = substrokes
 	
@@ -24,7 +26,7 @@ func create_stroke(substrokes: Array[Array]):
 			collisionshape.shape = shape
 			add_child(collisionshape)
 
-# Called when being drawn to screen. Assign this Area2D its proper Drawn collision layer.
+# Called when being drawn to screen. Assign this Stroke its proper Drawn collision layer.
 func assign_type(type):
 	stroke_type = type
 	
@@ -32,15 +34,17 @@ func assign_type(type):
 	
 	match stroke_type:
 		Globals.CONNECTOR:
-			# As a connector I am looking to connect to strokes
+			# As a drawn connector I am looking to connect to strokes
 			collision_mask = 1 | 4
 			
 			collision_layer = 8
 		_:
-			# As a stroke I am looking to connect to connectors
+			# As a drawn stroke I am looking to connect to connectors
 			collision_mask = 2 | 8
 			
 			collision_layer = 4
+	
+	update_name()
 
 func move_to_submitted():
 	
@@ -53,13 +57,14 @@ func move_to_submitted():
 		_:
 			collision_layer = 1
 	
+	update_name()
 
 func _on_area_entered(area: Area2D) -> void:
-	print_debug("Collided with a " + area.stroke_name())
+	print_debug(" collided with a " + area.name)
 	
 	# Connectors must hit 1 submitted stroke or 1 drawn stroke
 
-func stroke_name() -> String:
+func update_name():
 	var output = ""
 	if collision_layer == 1 or collision_layer == 2:
 		output += "Submitted "
@@ -78,4 +83,5 @@ func stroke_name() -> String:
 		Globals.CURVE:
 			output += "curve"
 	
-	return output
+	name = output
+	#return output
