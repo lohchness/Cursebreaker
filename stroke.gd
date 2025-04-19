@@ -28,15 +28,19 @@ func create_stroke(substrokes: Array[Array]):
 func assign_type(type):
 	stroke_type = type
 	
-	collision_layer = 0
+	#collision_layer = 4 | 8
 	
 	match stroke_type:
 		Globals.CONNECTOR:
 			# As a connector I am looking to connect to strokes
-			collision_mask = 1
+			collision_mask = 1 | 4
+			
+			collision_layer = 8
 		_:
 			# As a stroke I am looking to connect to connectors
-			collision_mask = 2
+			collision_mask = 2 | 8
+			
+			collision_layer = 4
 
 func move_to_submitted():
 	
@@ -51,15 +55,27 @@ func move_to_submitted():
 	
 
 func _on_area_entered(area: Area2D) -> void:
-	var output
-	match area.stroke_type:
+	print_debug("Collided with a " + area.stroke_name())
+	
+	# Connectors must hit 1 submitted stroke or 1 drawn stroke
+
+func stroke_name() -> String:
+	var output = ""
+	if collision_layer == 1 or collision_layer == 2:
+		output += "Submitted "
+	elif collision_layer == 4 or collision_layer == 8:
+		output += "Drawn "
+	else:
+		output += "Error"
+	
+	match stroke_type:
 		Globals.CONNECTOR:
-			output = "connector"
+			output += "connector"
 		Globals.SIMPLE_STRAIGHT:
-			output = "simple straight"
+			output += "simple straight"
 		Globals.COMPLEX_STRAIGHT:
-			output = "complex straight"
+			output += "complex straight"
 		Globals.CURVE:
-			output = "curve"
-			
-	print_debug("Collided with a " + output)
+			output += "curve"
+	
+	return output
