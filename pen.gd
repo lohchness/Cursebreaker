@@ -38,12 +38,16 @@ func _draw():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("incant"):
 		
-		verify_drawn_strokes()
+		if verify_drawn_strokes():
+			# There is an error in drawn strokes
+			for i in range(len(drawn_strokes)):
+				drawn_strokes[i].queue_free()
+		else:
+			for i in range(len(drawn_strokes)):
+				drawn_strokes[i].move_to_submitted()
+			# Append drawn_strokes to submitted_strokes
+			submitted_strokes.append_array(drawn_strokes)
 		
-		for i in range(len(drawn_strokes)):
-			drawn_strokes[i].move_to_submitted()
-		# Append drawn_strokes to submitted_strokes
-		submitted_strokes.append_array(drawn_strokes)
 		drawn_strokes = []
 		queue_redraw()
 		
@@ -179,9 +183,13 @@ func pixel_length(arr):
 	return len(arr) * segment_max_distance
 
 func verify_drawn_strokes():
+	var has_error = false
 	for stroke in drawn_strokes:
-		stroke.verify(is_first_incant)
+		var s = stroke.verify(is_first_incant)
 		
+		if s and has_error == false:
+			has_error = true
 		#for i in range(len(stroke.stroke_points)):
 			#for j in range(len(stroke.stroke_points[i]) - 1):
 				#pass
+	return has_error

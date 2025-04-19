@@ -141,7 +141,4 @@ func verify(first):
 				print("ERROR: Stroke connected to submitted connector")
 				return true
 
-		
-		pass
-
 	return false
