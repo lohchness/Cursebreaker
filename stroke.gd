@@ -9,7 +9,7 @@ class_name Stroke
 var stroke_points: Array[Array] = [[]]
 var stroke_type
 
-#var connected_to = Array[Stroke]
+var connected_to: Array[Stroke] = []
 
 func create_stroke(substrokes: Array[Array]):
 	stroke_points = substrokes
@@ -60,9 +60,11 @@ func move_to_submitted():
 	update_name()
 
 func _on_area_entered(area: Area2D) -> void:
-	print_debug(" collided with a " + area.name)
+	print(" collided with a " + area.name)
 	
-	# Connectors must hit 1 submitted stroke or 1 drawn stroke
+	# Connectors must hit 1 submitted stroke or 1 drawn stroke (may move to validation stage)
+	
+	connected_to.append(area)
 
 func update_name():
 	var output = ""
