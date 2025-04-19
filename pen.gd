@@ -20,7 +20,7 @@ func _draw():
 	for i in range(len(submitted_strokes)):
 		for j in range(len(submitted_strokes[i].stroke_points)):
 			for k in range(1, len(submitted_strokes[i].stroke_points[j])):
-				draw_line(submitted_strokes[i].stroke_points[j][k-1], submitted_strokes[i].stroke_points[j][k], Color.BLACK, 5)
+				draw_line(submitted_strokes[i].stroke_points[j][k-1], submitted_strokes[i].stroke_points[j][k], Color.BLUE_VIOLET, 5)
 	
 	# Draw every stroke that is pending submission
 	for i in range(len(drawn_strokes)):
@@ -122,7 +122,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 				if stroke_type == Globals.COMPLEX_STRAIGHT:
 					stroke_type = Globals.INVALID
 		
-		print("Theta - Theta Zero: " + str(angle_difference))
+		#print("Theta - Theta Zero: " + str(angle_difference))
 		last_angle_difference = angle_difference
 		
 		substrokes[-1].append(stroke_points[i])
@@ -132,9 +132,9 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	
 	
 	if stroke_type == Globals.SIMPLE_STRAIGHT:
-		if len(substrokes[-1]) < 10:
+		if pixel_length(substrokes[-1]) < 200:
 			stroke_type = Globals.INVALID
-		if len(substrokes[-1]) < 7:
+		if pixel_length(substrokes[-1]) < 140:
 			stroke_type = Globals.CONNECTOR
 	
 	match stroke_type:
@@ -161,3 +161,6 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 
 func angle_theta(a: Vector2, b: Vector2) -> float:
 	return rad_to_deg(a.angle_to_point(b))
+
+func pixel_length(arr):
+	return len(arr) * segment_max_distance
