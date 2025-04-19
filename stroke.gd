@@ -87,4 +87,44 @@ func update_name():
 			output += "curve"
 	
 	set_name(output)
-	#return output
+
+func verify():
+	# Return true if error
+	if stroke_type == Globals.CONNECTOR:
+		# Connectors:
+		#  - Cannot have no connections or have 1 connection
+		#     - Can only have at least 2 connections
+		#  - Cannot have another drawn or submitted connector
+		#  - Must hit at least 2 drawn strokes OR at least 1 submitted and at least 1 drawn stroke
+		
+		if len(connected_to) < 2:
+			print("ERROR: Connector has less than 2 connections")
+			return true
+		
+		var submitted_stroke_count = 0
+		var drawn_stroke_count = 0
+		
+		for i in connected_to:
+			if i.stroke_type == Globals.CONNECTOR:
+				print("ERROR: Connector connected to another connector")
+				return true
+			
+			else:
+				if i.collision_layer == 1:
+					submitted_stroke_count += 1
+				if i.collision_layer == 4:
+					drawn_stroke_count += 1
+		
+		if submitted_stroke_count > 0 and drawn_stroke_count == 0:
+			print("ERROR: Connector only connected to submitted strokes")
+			return true
+		
+	else:
+		# Strokes:
+		#  - Cannot have another drawn or submitted stroke
+		#  - Can only have drawn connectors
+		#  - Must have at least 1 connection if it is not the first incant
+		#  - Cannot have submitted connectors
+		pass
+
+	return false
