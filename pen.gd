@@ -137,7 +137,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	if stroke_type == Globals.SIMPLE_STRAIGHT:
 		if pixel_length(substrokes[-1]) < 200:
 			stroke_type = Globals.INVALID
-		if pixel_length(substrokes[-1]) < 140:
+		if pixel_length(substrokes[-1]) < 120:
 			stroke_type = Globals.CONNECTOR
 	
 	match stroke_type:
