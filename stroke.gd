@@ -85,5 +85,5 @@ func update_name():
 		Globals.CURVE:
 			output += "curve"
 	
-	name = output
+	set_name(output)
 	#return output

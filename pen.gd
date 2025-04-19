@@ -64,9 +64,6 @@ func _input(event: InputEvent) -> void:
 			# Sends stored Vector2s into the Stroke class
 			if len(curr_stroke_points) > 1:
 				var s = classify_stroke(curr_stroke_points)
-				if s != null:
-					drawn_strokes.append(s)
-					add_child(s)
 			
 			curr_stroke_points = []
 			
@@ -157,8 +154,11 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 		return null
 	
 	var stroke: Stroke = strokescene.instantiate()
+	add_child(stroke)
 	stroke.create_stroke(substrokes)
 	stroke.assign_type(stroke_type)
+	
+	drawn_strokes.append(stroke)
 	
 	return stroke
 
