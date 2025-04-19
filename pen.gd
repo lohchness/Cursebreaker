@@ -108,19 +108,22 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 				substrokes.append([])
 				theta_zero = angle_theta(stroke_points[i], stroke_points[i+1])
 				print("New Theta Zero: " + str(theta_zero))
-				if stroke_type == Globals.SIMPLE_STRAIGHT:
-					stroke_type = Globals.COMPLEX_STRAIGHT
-				if stroke_type == Globals.CURVE:
-					stroke_type = Globals.INVALID
+				
+				if stroke_type != Globals.INVALID:
+					if stroke_type == Globals.SIMPLE_STRAIGHT:
+						stroke_type = Globals.COMPLEX_STRAIGHT
+					if stroke_type == Globals.CURVE:
+						stroke_type = Globals.INVALID
 				
 				# new theta zero means new angle difference, for printing purposes
 				angle_difference = abs(angle_theta(stroke_points[i], stroke_points[i+1]) - theta_zero)
 			else:
 				# Curve if otherwise.
-				if stroke_type == Globals.SIMPLE_STRAIGHT:
-					stroke_type = Globals.CURVE
-				if stroke_type == Globals.COMPLEX_STRAIGHT:
-					stroke_type = Globals.INVALID
+				if stroke_type != Globals.INVALID:
+					if stroke_type == Globals.SIMPLE_STRAIGHT:
+						stroke_type = Globals.CURVE
+					if stroke_type == Globals.COMPLEX_STRAIGHT:
+						stroke_type = Globals.INVALID
 		
 		#print("Theta - Theta Zero: " + str(angle_difference))
 		last_angle_difference = angle_difference
