@@ -35,6 +35,9 @@ func _draw():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("incant"):
+		
+		verify_drawn_strokes()
+		
 		for i in range(len(drawn_strokes)):
 			drawn_strokes[i].move_to_submitted()
 		# Append drawn_strokes to submitted_strokes
@@ -167,3 +170,22 @@ func angle_theta(a: Vector2, b: Vector2) -> float:
 
 func pixel_length(arr):
 	return len(arr) * segment_max_distance
+
+func verify_drawn_strokes():
+	for stroke in drawn_strokes:
+		#for i in range(len(stroke.stroke_points)):
+			#for j in range(len(stroke.stroke_points[i]) - 1):
+				#pass
+		
+		if stroke.stroke_type == Globals.CONNECTOR:
+			# Connectors:
+			#  - Cannot have another drawn or submitted connector
+			#  - Cannot have no connections
+			#  - Must hit at least 2 drawn strokes OR at least 1 submitted and at least 1 drawn stroke
+			
+			# Strokes:
+			#  - Cannot have another drawn or submitted stroke
+			#  - Can only have drawn connectors
+			#  - Must have at least 1 connection if it is not the first incant
+			#  - Cannot have submitted connectors
+			pass
