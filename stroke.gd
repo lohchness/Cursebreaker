@@ -88,7 +88,7 @@ func update_name():
 	
 	set_name(output)
 
-func verify():
+func verify(first):
 	# Return true if error
 	if stroke_type == Globals.CONNECTOR:
 		# Connectors:
@@ -109,11 +109,11 @@ func verify():
 				print("ERROR: Connector connected to another connector")
 				return true
 			
-			else:
-				if i.collision_layer == 1:
-					submitted_stroke_count += 1
-				if i.collision_layer == 4:
-					drawn_stroke_count += 1
+			# Check if i is a drawn or submitted stroke
+			if i.collision_layer == 1:
+				submitted_stroke_count += 1
+			if i.collision_layer == 4:
+				drawn_stroke_count += 1
 		
 		if submitted_stroke_count > 0 and drawn_stroke_count == 0:
 			print("ERROR: Connector only connected to submitted strokes")
@@ -125,6 +125,23 @@ func verify():
 		#  - Can only have drawn connectors
 		#  - Must have at least 1 connection if it is not the first incant
 		#  - Cannot have submitted connectors
+		
+		if not first:
+			if len(connected_to) == 0:
+				print("ERROR: Not first incant, stroke must have a connector")
+				return true
+		
+		for i in connected_to:
+			if i.stroke_type != Globals.CONNECTOR:
+				print("ERROR: Stroke connected to another stroke")
+				return true
+			
+			# Check if i is a submitted connector
+			if i.collision_layer == 2:
+				print("ERROR: Stroke connected to submitted connector")
+				return true
+
+		
 		pass
 
 	return false

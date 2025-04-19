@@ -15,6 +15,8 @@ const COMPLEX_STRAIGHT_DEGREE_MIN = 50.0
 const COMPLEX_STRAIGHT_DEGREE_MAX = 180.0
 const strokescene = preload("res://stroke.tscn")
 
+var is_first_incant = true
+
 func _draw():
 	# Draw every submitted stroke
 	for i in range(len(submitted_strokes)):
@@ -44,6 +46,8 @@ func _input(event: InputEvent) -> void:
 		submitted_strokes.append_array(drawn_strokes)
 		drawn_strokes = []
 		queue_redraw()
+		
+		is_first_incant = false
 	
 	if event.is_action_pressed("dispel"):
 		# Free strokes in drawn_strokes and empty array
@@ -173,7 +177,7 @@ func pixel_length(arr):
 
 func verify_drawn_strokes():
 	for stroke in drawn_strokes:
-		stroke.verify()
+		stroke.verify(is_first_incant)
 		
 		#for i in range(len(stroke.stroke_points)):
 			#for j in range(len(stroke.stroke_points[i]) - 1):
