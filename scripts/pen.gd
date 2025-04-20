@@ -13,7 +13,7 @@ var in_motion = false
 const STRAIGHT_LINE_DEGREE_THRESHOLD = 20.0
 const COMPLEX_STRAIGHT_DEGREE_MIN = 50.0
 const COMPLEX_STRAIGHT_DEGREE_MAX = 180.0
-const strokescene = preload("res://stroke.tscn")
+const strokescene = preload("res://scenes/stroke.tscn")
 
 var is_first_incant = true
 
@@ -89,11 +89,13 @@ func _input(event: InputEvent) -> void:
 				drawn_strokes[i].move_to_submitted()
 			# Append drawn_strokes to submitted_strokes
 			submitted_strokes.append_array(drawn_strokes)
+			
+			is_first_incant = false
 		
 		drawn_strokes = []
 		queue_redraw()
 		
-		is_first_incant = false
+		
 
 func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	var substrokes: Array[Array] = [[]] # Only complex straight lines will have more than 1 element
