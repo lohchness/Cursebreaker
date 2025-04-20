@@ -30,24 +30,27 @@ func create_stroke(substrokes: Array[Array]):
 			shape.b = stroke_points[i][j+1]
 			collisionshape.shape = shape
 			add_child(collisionshape)
-			
-			if(i == 0 and j == 0):
-				MaxX = stroke_points[i][j].x
-				MinX = stroke_points[i][j].x
-				MaxY = stroke_points[i][j].y
-				MinY = stroke_points[i][j].y
-			else:
-				# set max/min x and y 
-				MaxX = maxf(MaxX,stroke_points[i][j].x)
-				MinX = minf(MinX,stroke_points[i][j].x)
-				MaxY = maxf(MaxY,stroke_points[i][j].y)
-				MinY = minf(MinY,stroke_points[i][j].y)
+	
+	# Go through list again, and get max/min x/y
+	
+	# Should work as it is guaranteed that a created stroke has at least 1 substroke
+	MaxX = stroke_points[0][0].x
+	MinX = stroke_points[0][0].x
+	MaxY = stroke_points[0][0].y
+	MinY = stroke_points[0][0].y
+	
+	for i in range(len(stroke_points)):
+		for j in range(len(stroke_points[i])):
+			# set max/min x and y 
+			MaxX = maxf(MaxX,stroke_points[i][j].x)
+			MinX = minf(MinX,stroke_points[i][j].x)
+			MaxY = maxf(MaxY,stroke_points[i][j].y)
+			MinY = minf(MinY,stroke_points[i][j].y)
 	
 	print(MaxX,", ",MinX)
 	print(MaxY,", ",MinY)
 	stroke_width = MaxX-MinX
 	stroke_height = MaxY-MinY
-	
 
 # Called when being drawn to screen. Assign this Stroke its proper Drawn collision layer.
 func assign_type(type):
