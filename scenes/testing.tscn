@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjxp2p4ux1von"]
 
-[ext_resource type="Script" uid="uid://cc5hj17xp4o21" path="res://scripts/testing.gd" id="1_qrja6"]
+[ext_resource type="Script" uid="uid://cc5hj17xp4o21" path="res://scripts/testing.gd" id="1_ryjsw"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_co24e"]
 b = Vector2(203, 107)
@@ -10,7 +10,7 @@ a = Vector2(302, 207)
 b = Vector2(203, 107)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_qrja6")
+script = ExtResource("1_ryjsw")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
