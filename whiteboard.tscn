@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://3ghhb13p6d2l"]
+[gd_scene load_steps=4 format=3 uid="uid://3ghhb13p6d2l"]
 
 [ext_resource type="Script" uid="uid://rm5qmuringpc" path="res://pen.gd" id="1_x0b4i"]
+[ext_resource type="Texture2D" uid="uid://d3g312iljjynv" path="res://assets/sprites/whiteboard_full.png" id="2_tyhvn"]
 
-[node name="Whiteboard" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7jcs"]
+size = Vector2(483, 483)
+
+[node name="Whiteboard" type="Area2D"]
+collision_layer = 128
+collision_mask = 0
 script = ExtResource("1_x0b4i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(560, 420)
+texture = ExtResource("2_tyhvn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(824.5, 427.5)
+shape = SubResource("RectangleShape2D_c7jcs")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

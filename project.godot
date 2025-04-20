@@ -51,6 +51,7 @@ dispel={
 2d_physics/layer_5="Marker"
 2d_physics/layer_6="Target"
 2d_physics/layer_7="MapBoundary"
+2d_physics/layer_8="Whiteboard"
 
 [rendering]
 
