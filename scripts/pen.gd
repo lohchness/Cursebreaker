@@ -39,12 +39,7 @@ func _draw():
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed("dispel"):
-		# Free strokes in drawn_strokes and empty array
-		for i in range(len(drawn_strokes)):
-			drawn_strokes[i].queue_free()
-		drawn_strokes = []
-		queue_redraw()
+	
 	
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("brush"):
@@ -80,6 +75,13 @@ func brush_release():
 	queue_redraw()
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("dispel"):
+		# Free strokes in drawn_strokes and empty array
+		for i in range(len(drawn_strokes)):
+			drawn_strokes[i].queue_free()
+		drawn_strokes = []
+		queue_redraw()
+	
 	if event.is_action_pressed("incant"):
 		
 		if verify_drawn_strokes():
