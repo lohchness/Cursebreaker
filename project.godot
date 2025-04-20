@@ -48,3 +48,10 @@ dispel={
 2d_physics/layer_2="Submitted Connector"
 2d_physics/layer_3="Drawn Stroke"
 2d_physics/layer_4="Drawn Connector"
+2d_physics/layer_5="Marker"
+2d_physics/layer_6="Target"
+2d_physics/layer_7="MapBoundary"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
