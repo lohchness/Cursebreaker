@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0puoe30cpgcg"]
+
+[ext_resource type="Texture2D" uid="uid://2q41n2el1gt8" path="res://assets/sprites/marker.png" id="1_fatmp"]
+[ext_resource type="Script" uid="uid://dmwemsqs8xxor" path="res://scripts/marker_actual.gd" id="1_hmdxi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmdxi"]
+radius = 9.0
+
+[node name="MarkerActual" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 64
+script = ExtResource("1_hmdxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fatmp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hmdxi")

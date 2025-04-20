@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3ghhb13p6d2l"]
 
-[ext_resource type="Script" uid="uid://rm5qmuringpc" path="res://pen.gd" id="1_x0b4i"]
+[ext_resource type="Script" uid="uid://rm5qmuringpc" path="res://scripts/pen.gd" id="1_x0b4i"]
 [ext_resource type="Texture2D" uid="uid://d3g312iljjynv" path="res://assets/sprites/whiteboard_full.png" id="2_tyhvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7jcs"]
