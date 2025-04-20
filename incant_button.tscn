@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5wo0gy13avw5"]
+
+[ext_resource type="Texture2D" uid="uid://4lxhjrehffkr" path="res://assets/sprites/incant.png" id="1_bi2qe"]
+
+[node name="IncantButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("1_bi2qe")
