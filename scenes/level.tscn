@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://w015m2tf04rx"]
+[gd_scene load_steps=4 format=3 uid="uid://w015m2tf04rx"]
 
 [ext_resource type="PackedScene" uid="uid://3ghhb13p6d2l" path="res://scenes/whiteboard.tscn" id="1_u52ul"]
+[ext_resource type="Script" uid="uid://c4yqadc08pa2x" path="res://scripts/level.gd" id="1_w8frs"]
 [ext_resource type="PackedScene" uid="uid://kxxki4i1p8uv" path="res://scenes/map.tscn" id="2_vonw3"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_w8frs")
 
 [node name="Whiteboard" parent="." instance=ExtResource("1_u52ul")]
 
