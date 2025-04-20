@@ -35,6 +35,48 @@ func _draw():
 		draw_line(curr_stroke_points[i], curr_stroke_points[i+1], Color.BLACK, 5)
 
 
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("dispel"):
+		# Free strokes in drawn_strokes and empty array
+		for i in range(len(drawn_strokes)):
+			drawn_strokes[i].queue_free()
+		drawn_strokes = []
+		queue_redraw()
+	
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("brush"):
+			in_motion = true
+			
+			last_pos = event.position
+			curr_stroke_points.append(event.position)
+			
+		if event.is_action_released("brush"):
+			brush_release()
+	
+	if in_motion and event is InputEventMouseMotion:
+		if last_pos.distance_to(event.position) > segment_max_distance:
+			last_pos = event.position
+			curr_stroke_points.append(last_pos)
+			
+			queue_redraw()
+
+func _on_mouse_exited() -> void:
+	brush_release()
+
+func brush_release():
+	in_motion = false
+			
+	#curr_stroke_points.append(last_pos)
+	
+	# Sends stored Vector2s into the Stroke class
+	if len(curr_stroke_points) > 1:
+		var s = classify_stroke(curr_stroke_points)
+	
+	curr_stroke_points = []
+	
+	queue_redraw()
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("incant"):
 		
@@ -52,40 +94,6 @@ func _input(event: InputEvent) -> void:
 		queue_redraw()
 		
 		is_first_incant = false
-	
-	if event.is_action_pressed("dispel"):
-		# Free strokes in drawn_strokes and empty array
-		for i in range(len(drawn_strokes)):
-			drawn_strokes[i].queue_free()
-		drawn_strokes = []
-		queue_redraw()
-	
-	if event is InputEventMouseButton:
-		if event.is_action_pressed("brush"):
-			in_motion = true
-			
-			last_pos = event.position
-			curr_stroke_points.append(event.position)
-			
-		if event.is_action_released("brush"):
-			in_motion = false
-			
-			#curr_stroke_points.append(last_pos)
-			
-			# Sends stored Vector2s into the Stroke class
-			if len(curr_stroke_points) > 1:
-				var s = classify_stroke(curr_stroke_points)
-			
-			curr_stroke_points = []
-			
-			queue_redraw()
-	
-	if in_motion and event is InputEventMouseMotion:
-		if last_pos.distance_to(event.position) > segment_max_distance:
-			last_pos = event.position
-			curr_stroke_points.append(last_pos)
-			
-			queue_redraw()
 
 func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	var substrokes: Array[Array] = [[]] # Only complex straight lines will have more than 1 element
