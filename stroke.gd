@@ -8,12 +8,17 @@ class_name Stroke
 
 var stroke_points: Array[Array] = [[]]
 var stroke_type
+var stroke_width = 0;
+var stroke_height = 0;
 
 var connected_to: Array[Stroke] = []
 
 func create_stroke(substrokes: Array[Array]):
 	stroke_points = substrokes
-	
+	var MaxX = 0
+	var MinX = 0
+	var MaxY = 0
+	var MinY = 0
 	# For every pair,
 	# Create a collision shape 2d with the shape a SegmentShape2D
 	# Shape.A is the first vector, Shape.B is the second vector
@@ -25,6 +30,24 @@ func create_stroke(substrokes: Array[Array]):
 			shape.b = stroke_points[i][j+1]
 			collisionshape.shape = shape
 			add_child(collisionshape)
+			
+			if(i == 0 and j == 0):
+				MaxX = stroke_points[i][j].x
+				MinX = stroke_points[i][j].x
+				MaxY = stroke_points[i][j].y
+				MinY = stroke_points[i][j].y
+			else:
+				# set max/min x and y 
+				MaxX = maxf(MaxX,stroke_points[i][j].x)
+				MinX = minf(MinX,stroke_points[i][j].x)
+				MaxY = maxf(MaxY,stroke_points[i][j].y)
+				MinY = minf(MinY,stroke_points[i][j].y)
+	
+	print(MaxX,", ",MinX)
+	print(MaxY,", ",MinY)
+	stroke_width = MaxX-MinX
+	stroke_height = MaxY-MinY
+	
 
 # Called when being drawn to screen. Assign this Stroke its proper Drawn collision layer.
 func assign_type(type):
