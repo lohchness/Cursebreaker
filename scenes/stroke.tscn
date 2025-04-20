@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://duglh3i02ggy2"]
 
-[ext_resource type="Script" uid="uid://daliidbfgsf0u" path="res://scenes/stroke.gd" id="1_k1uwf"]
+[ext_resource type="Script" uid="uid://daliidbfgsf0u" path="res://scripts/stroke.gd" id="1_k1uwf"]
 
 [node name="Stroke" type="Area2D"]
 collision_layer = 0
