@@ -17,6 +17,8 @@ const strokescene = preload("res://scenes/stroke.tscn")
 
 var is_first_incant = true
 
+signal submit_drawn_stroke
+
 func _draw():
 	# Draw every submitted stroke
 	for i in range(len(submitted_strokes)):
@@ -91,11 +93,11 @@ func _input(event: InputEvent) -> void:
 			submitted_strokes.append_array(drawn_strokes)
 			
 			is_first_incant = false
+			
+			submit_drawn_stroke.emit()
 		
 		drawn_strokes = []
 		queue_redraw()
-		
-		
 
 func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	var substrokes: Array[Array] = [[]] # Only complex straight lines will have more than 1 element

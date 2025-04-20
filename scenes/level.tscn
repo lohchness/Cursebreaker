@@ -10,3 +10,5 @@ script = ExtResource("1_w8frs")
 [node name="Whiteboard" parent="." instance=ExtResource("1_u52ul")]
 
 [node name="Map" parent="." instance=ExtResource("2_vonw3")]
+
+[connection signal="submit_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_submit_drawn_stroke"]
