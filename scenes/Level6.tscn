@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://uao8jdi4vcyu"]
+[gd_scene load_steps=4 format=3 uid="uid://uao8jdi4vcyu"]
 
 [ext_resource type="PackedScene" uid="uid://w015m2tf04rx" path="res://scenes/level.tscn" id="1_tfsyw"]
 [ext_resource type="PackedScene" uid="uid://wsdpdrm1raeu" path="res://scenes/target.tscn" id="2_c55bh"]
+[ext_resource type="PackedScene" uid="uid://cuekkkc4vs5oa" path="res://scenes/level_select.tscn" id="2_rl4c7"]
 
 [node name="Level" instance=ExtResource("1_tfsyw")]
+next = ExtResource("2_rl4c7")
 metadata/_edit_vertical_guides_ = [165.0, 418.0]
 metadata/_edit_horizontal_guides_ = [425.0, 514.0, 295.0]
 
