@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://4lxhjrehffkr" path="res://assets/sprites/incant.png" id="1_fj3ur"]
 
 [node name="IncantButton" type="TextureButton"]
-offset_right = 236.0
-offset_bottom = 82.0
+offset_right = 217.0
+offset_bottom = 74.0
 texture_normal = ExtResource("1_fj3ur")
