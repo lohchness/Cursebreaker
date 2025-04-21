@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuekkkc4vs5oa"]
+
+[ext_resource type="Texture2D" uid="uid://c7grwklwrr14w" path="res://assets/sprites/LevelSelect.png" id="1_p0wlc"]
+[ext_resource type="Texture2D" uid="uid://b7l4paip83ujb" path="res://assets/sprites/Back.png" id="2_2epne"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_p0wlc")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 42.0
+offset_right = 620.0
+offset_bottom = 82.0
+texture_normal = ExtResource("2_2epne")
