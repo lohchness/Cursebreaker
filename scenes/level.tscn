@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://w015m2tf04rx"]
+[gd_scene load_steps=9 format=3 uid="uid://w015m2tf04rx"]
 
 [ext_resource type="PackedScene" uid="uid://3ghhb13p6d2l" path="res://scenes/whiteboard.tscn" id="1_u52ul"]
 [ext_resource type="Script" uid="uid://c4yqadc08pa2x" path="res://scripts/level.gd" id="1_w8frs"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bn10yt3y0tjpx" path="res://scenes/dispel_button.tscn" id="5_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://ovin5x3u6n8b" path="res://scenes/next_button.tscn" id="7_b121j"]
 [ext_resource type="PackedScene" uid="uid://bl205u8p4n7wa" path="res://scenes/reset_button.tscn" id="7_klq6b"]
+[ext_resource type="Texture2D" uid="uid://b7l4paip83ujb" path="res://assets/sprites/Back.png" id="8_b121j"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_w8frs")
@@ -50,9 +51,17 @@ offset_top = 706.0
 offset_right = 904.0
 offset_bottom = 751.0
 
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 49.0
+offset_top = 44.0
+offset_right = 180.0
+offset_bottom = 84.0
+texture_normal = ExtResource("8_b121j")
+
 [connection signal="new_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_new_drawn_stroke"]
 [connection signal="submit_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_submit_drawn_stroke"]
 [connection signal="pressed" from="IncantButton" to="." method="_on_incant_button_pressed"]
 [connection signal="pressed" from="dispel_button" to="." method="_on_dispel_button_pressed"]
 [connection signal="pressed" from="reset_button" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
