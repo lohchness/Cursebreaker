@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuekkkc4vs5oa"]
+[gd_scene load_steps=6 format=3 uid="uid://cuekkkc4vs5oa"]
 
+[ext_resource type="Script" uid="uid://cpn3dtjo4gy3h" path="res://scripts/level_select.gd" id="1_2epne"]
 [ext_resource type="Texture2D" uid="uid://c7grwklwrr14w" path="res://assets/sprites/LevelSelect.png" id="1_p0wlc"]
 [ext_resource type="Texture2D" uid="uid://b7l4paip83ujb" path="res://assets/sprites/Back.png" id="2_2epne"]
+[ext_resource type="Texture2D" uid="uid://d4iiv1v16fey3" path="res://assets/sprites/Tutorial.png" id="4_chg43"]
+[ext_resource type="FontFile" uid="uid://dwgfl4vwytg2c" path="res://Jacquard12-Regular.ttf" id="5_r77uv"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -10,17 +13,98 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2epne")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("1_p0wlc")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="Back" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 489.0
 offset_top = 42.0
 offset_right = 620.0
 offset_bottom = 82.0
 texture_normal = ExtResource("2_2epne")
+
+[node name="Tutorial" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 118.0
+offset_right = 305.0
+offset_bottom = 158.0
+texture_normal = ExtResource("4_chg43")
+
+[node name="Level1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 208.0
+offset_right = 357.0
+offset_bottom = 342.0
+theme_override_fonts/font = ExtResource("5_r77uv")
+theme_override_font_sizes/font_size = 126
+text = "1"
+flat = true
+
+[node name="Level2" type="Button" parent="."]
+offset_left = 463.0
+offset_top = 202.0
+offset_right = 669.0
+offset_bottom = 336.0
+theme_override_fonts/font = ExtResource("5_r77uv")
+theme_override_font_sizes/font_size = 126
+text = "2"
+flat = true
+
+[node name="Level3" type="Button" parent="."]
+offset_left = 757.0
+offset_top = 218.0
+offset_right = 913.0
+offset_bottom = 378.0
+theme_override_fonts/font = ExtResource("5_r77uv")
+theme_override_font_sizes/font_size = 126
+text = "3"
+flat = true
+
+[node name="Level4" type="Button" parent="."]
+offset_left = 703.0
+offset_top = 454.0
+offset_right = 913.0
+offset_bottom = 588.0
+theme_override_fonts/font = ExtResource("5_r77uv")
+theme_override_font_sizes/font_size = 126
+text = "4"
+flat = true
+
+[node name="Level5" type="Button" parent="."]
+offset_left = 361.0
+offset_top = 465.0
+offset_right = 571.0
+offset_bottom = 599.0
+theme_override_fonts/font = ExtResource("5_r77uv")
+theme_override_font_sizes/font_size = 126
+text = "5"
+flat = true
+
+[node name="Level6" type="Button" parent="."]
+offset_left = 582.0
+offset_top = 665.0
+offset_right = 792.0
+offset_bottom = 799.0
+theme_override_fonts/font = ExtResource("5_r77uv")
+theme_override_font_sizes/font_size = 126
+text = "6"
+flat = true
+
+[node name="Level7" type="Button" parent="."]
+offset_left = 582.0
+offset_top = 665.0
+offset_right = 792.0
+offset_bottom = 799.0
+theme_override_fonts/font = ExtResource("5_r77uv")
+theme_override_font_sizes/font_size = 126
+text = "6"
+flat = true
