@@ -10,6 +10,7 @@ var stroke_points: Array[Array] = [[]]
 var stroke_type
 var stroke_width = 0;
 var stroke_height = 0;
+var length = 0
 
 var connected_to: Array[Stroke] = []
 
@@ -30,6 +31,9 @@ func create_stroke(substrokes: Array[Array]):
 			shape.b = stroke_points[i][j+1]
 			collisionshape.shape = shape
 			add_child(collisionshape)
+			
+			# for every pair, add up the magnitude of the 2 Vector2s.
+			length += stroke_points[i][j].distance_to(stroke_points[i][j+1])
 	
 	# Go through list again, and get max/min x/y
 	
