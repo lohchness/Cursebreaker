@@ -10,10 +10,8 @@ func _physics_process(delta: float) -> void:
 		modulate.g += delta
 		modulate.b += delta
 
-
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-
 
 func _on_tutorial_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/tutorial_page_1.tscn")
@@ -32,3 +30,6 @@ func _on_level_4_pressed() -> void:
 
 func _on_level_5_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Level5.tscn")
+
+func _on_level_6_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/Level6.tscn")

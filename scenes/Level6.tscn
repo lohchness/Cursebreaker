@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://uao8jdi4vcyu"]
+
+[ext_resource type="PackedScene" uid="uid://w015m2tf04rx" path="res://scenes/level.tscn" id="1_tfsyw"]
+[ext_resource type="PackedScene" uid="uid://wsdpdrm1raeu" path="res://scenes/target.tscn" id="2_c55bh"]
+
+[node name="Level" instance=ExtResource("1_tfsyw")]
+metadata/_edit_vertical_guides_ = [165.0, 418.0]
+metadata/_edit_horizontal_guides_ = [425.0, 514.0, 295.0]
+
+[node name="ColorRect" parent="." index="0"]
+offset_left = -40.0
+offset_top = 42.0
+offset_right = 1127.0
+offset_bottom = 939.0
+
+[node name="Target" parent="Targets" index="0" instance=ExtResource("2_c55bh")]
+position = Vector2(181, 535)
+
+[node name="Target2" parent="Targets" index="1" instance=ExtResource("2_c55bh")]
+position = Vector2(366, 425)
+
+[node name="Target3" parent="Targets" index="2" instance=ExtResource("2_c55bh")]
+position = Vector2(181, 295)
+
+[node name="Target4" parent="Targets" index="3" instance=ExtResource("2_c55bh")]
+position = Vector2(202, 425)
+
+[node name="Target5" parent="Targets" index="4" instance=ExtResource("2_c55bh")]
+position = Vector2(397, 537)
+
+[node name="Target6" parent="Targets" index="5" instance=ExtResource("2_c55bh")]
+position = Vector2(397, 295)
