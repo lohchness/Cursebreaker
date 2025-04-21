@@ -18,6 +18,7 @@ const strokescene = preload("res://scenes/stroke.tscn")
 var is_first_incant = true
 
 signal submit_drawn_stroke
+signal new_drawn_stroke
 
 func _draw():
 	# Draw every submitted stroke
@@ -168,6 +169,9 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	
 	drawn_strokes.append(stroke)
 	
+	if stroke_type == Globals.COMPLEX_STRAIGHT or stroke_type == Globals.CURVE:
+		new_drawn_stroke.emit()
+	
 	return stroke
 
 func angle_theta(a: Vector2, b: Vector2) -> float:
@@ -213,3 +217,5 @@ func dispel():
 		drawn_strokes[i].queue_free()
 	drawn_strokes = []
 	queue_redraw()
+	
+	new_drawn_stroke.emit()

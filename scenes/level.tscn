@@ -47,6 +47,7 @@ offset_top = 698.0
 offset_right = 1062.0
 offset_bottom = 761.0
 
+[connection signal="new_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_new_drawn_stroke"]
 [connection signal="submit_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_submit_drawn_stroke"]
 [connection signal="pressed" from="IncantButton" to="." method="_on_incant_button_pressed"]
 [connection signal="pressed" from="dispel_button" to="." method="_on_dispel_button_pressed"]

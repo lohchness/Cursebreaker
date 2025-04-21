@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://kxxki4i1p8uv"]
+[gd_scene load_steps=9 format=3 uid="uid://kxxki4i1p8uv"]
 
 [ext_resource type="Texture2D" uid="uid://cetp31fmd6vcg" path="res://assets/sprites/map_full.png" id="1_c7s6e"]
 [ext_resource type="Script" uid="uid://deupbbevv00vp" path="res://scripts/map.gd" id="1_gldc4"]
 [ext_resource type="PackedScene" uid="uid://b0puoe30cpgcg" path="res://scenes/marker_actual.tscn" id="2_wijl4"]
+[ext_resource type="PackedScene" uid="uid://dlujoo7mf6v22" path="res://scenes/marker_ghost.tscn" id="3_0cso3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7s6e"]
 size = Vector2(7, 392)
@@ -44,6 +45,9 @@ shape = SubResource("RectangleShape2D_e0an3")
 [node name="BottomWall" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(280, 622.5)
 shape = SubResource("RectangleShape2D_p5pve")
+
+[node name="marker_ghost" parent="." instance=ExtResource("3_0cso3")]
+position = Vector2(281, 425)
 
 [node name="MarkerActual" parent="." instance=ExtResource("2_wijl4")]
 position = Vector2(281, 425)
