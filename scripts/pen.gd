@@ -118,6 +118,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 					if stroke_type == Globals.SIMPLE_STRAIGHT:
 						stroke_type = Globals.COMPLEX_STRAIGHT
 					if stroke_type == Globals.CURVE:
+						handle_stroke_error("Your curve is too sharp!")
 						stroke_type = Globals.INVALID
 				
 				# new theta zero means new angle difference, for printing purposes
@@ -128,6 +129,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 					if stroke_type == Globals.SIMPLE_STRAIGHT:
 						stroke_type = Globals.CURVE
 					if stroke_type == Globals.COMPLEX_STRAIGHT:
+						handle_stroke_error("Your sharp is too curvy!")
 						stroke_type = Globals.INVALID
 		
 		#print("Theta - Theta Zero: " + str(angle_difference))
@@ -141,11 +143,13 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	if stroke_type == Globals.CURVE:
 		if pixel_length(substrokes[-1]) < 50:
 			stroke_type = Globals.INVALID
+			handle_stroke_error("Your curve is too short!")
 	
 	if stroke_type == Globals.SIMPLE_STRAIGHT:
-		if pixel_length(substrokes[-1]) < 200:
+		if pixel_length(substrokes[-1]) >= 120 and pixel_length(substrokes[-1]) < 200:
 			stroke_type = Globals.INVALID
-		if pixel_length(substrokes[-1]) < 120:
+			handle_stroke_error("Your connector is too long!")
+		elif pixel_length(substrokes[-1]) < 120:
 			stroke_type = Globals.CONNECTOR
 	
 	match stroke_type:

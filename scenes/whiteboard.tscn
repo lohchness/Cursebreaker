@@ -29,9 +29,9 @@ shape = SubResource("RectangleShape2D_c7jcs")
 
 [node name="TooltipHelp" parent="." instance=ExtResource("3_l7cr7")]
 offset_left = 602.0
-offset_top = 45.0
+offset_top = 68.0
 offset_right = 1052.0
-offset_bottom = 199.0
+offset_bottom = 222.0
 theme_override_fonts/font = SubResource("FontVariation_v4ktc")
 theme_override_font_sizes/font_size = 50
 autowrap_mode = 2
