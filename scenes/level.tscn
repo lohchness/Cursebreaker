@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://w015m2tf04rx"]
+[gd_scene load_steps=5 format=3 uid="uid://w015m2tf04rx"]
 
 [ext_resource type="PackedScene" uid="uid://3ghhb13p6d2l" path="res://scenes/whiteboard.tscn" id="1_u52ul"]
 [ext_resource type="Script" uid="uid://c4yqadc08pa2x" path="res://scripts/level.gd" id="1_w8frs"]
 [ext_resource type="PackedScene" uid="uid://kxxki4i1p8uv" path="res://scenes/map.tscn" id="2_vonw3"]
+[ext_resource type="PackedScene" uid="uid://b5wo0gy13avw5" path="res://scenes/incant_button.tscn" id="4_mx8sn"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_w8frs")
@@ -11,4 +12,11 @@ script = ExtResource("1_w8frs")
 
 [node name="Map" parent="." instance=ExtResource("2_vonw3")]
 
+[node name="IncantButton" parent="." instance=ExtResource("4_mx8sn")]
+offset_left = 582.0
+offset_top = 688.0
+offset_right = 810.0
+offset_bottom = 762.0
+
 [connection signal="submit_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_submit_drawn_stroke"]
+[connection signal="pressed" from="IncantButton" to="." method="_on_incant_button_pressed"]
