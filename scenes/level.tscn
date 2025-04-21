@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://w015m2tf04rx"]
+[gd_scene load_steps=8 format=3 uid="uid://w015m2tf04rx"]
 
 [ext_resource type="PackedScene" uid="uid://3ghhb13p6d2l" path="res://scenes/whiteboard.tscn" id="1_u52ul"]
 [ext_resource type="Script" uid="uid://c4yqadc08pa2x" path="res://scripts/level.gd" id="1_w8frs"]
@@ -7,14 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bn10yt3y0tjpx" path="res://scenes/dispel_button.tscn" id="5_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://wsdpdrm1raeu" path="res://scenes/target.tscn" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://bl205u8p4n7wa" path="res://scenes/reset_button.tscn" id="7_klq6b"]
-[ext_resource type="PackedScene" uid="uid://bhhdh2judwcuk" path="res://scenes/tooltip_help.tscn" id="8_b121j"]
-[ext_resource type="FontFile" uid="uid://dwgfl4vwytg2c" path="res://Jacquard12-Regular.ttf" id="9_8c41q"]
-
-[sub_resource type="FontVariation" id="FontVariation_olg7q"]
-base_font = ExtResource("9_8c41q")
-spacing_glyph = -2
-spacing_top = -10
-spacing_bottom = -10
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_w8frs")
@@ -54,16 +46,6 @@ offset_left = 998.0
 offset_top = 698.0
 offset_right = 1062.0
 offset_bottom = 761.0
-
-[node name="TooltipHelp" parent="." instance=ExtResource("8_b121j")]
-offset_left = 602.0
-offset_top = 45.0
-offset_right = 1052.0
-offset_bottom = 199.0
-theme_override_fonts/font = SubResource("FontVariation_olg7q")
-theme_override_font_sizes/font_size = 50
-text = "A connector cannot be bound to only incanted strokes!"
-autowrap_mode = 2
 
 [connection signal="new_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_new_drawn_stroke"]
 [connection signal="submit_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_submit_drawn_stroke"]
