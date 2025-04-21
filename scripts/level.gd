@@ -54,3 +54,6 @@ func _on_incant_button_pressed() -> void:
 
 func _on_dispel_button_pressed() -> void:
 	whiteboard.dispel()
+
+func _on_reset_button_pressed() -> void:
+	get_tree().reload_current_scene()
