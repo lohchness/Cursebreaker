@@ -194,6 +194,8 @@ func verify_drawn_strokes():
 		
 		if s and has_error == false:
 			has_error = true
+		if not s:
+			is_first_incant = false
 		#for i in range(len(stroke.stroke_points)):
 			#for j in range(len(stroke.stroke_points[i]) - 1):
 				#pass
