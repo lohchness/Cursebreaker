@@ -74,7 +74,7 @@ func calculate_trajectory():
 	var total_y = total_width - total_height
 	
 	total_x *= .4
-	total_y *= .4
+	total_y *= .6
 	
 	return Vector2(total_x, total_y)
 
