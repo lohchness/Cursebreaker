@@ -44,6 +44,7 @@ offset_bottom = 761.0
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="NextButton" parent="." instance=ExtResource("7_b121j")]
+visible = false
 offset_left = 764.0
 offset_top = 706.0
 offset_right = 904.0
