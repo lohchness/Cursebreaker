@@ -2,8 +2,14 @@ extends CharacterBody2D
 
 var speed = 200
 
-var direction = Vector2(.5,1)
-var remaining_distance = 1000
+var direction = Vector2(0,0)
+var remaining_distance = 0
+
+# This ghost travels the path that marker actual will go without 
+# colliding with targets. This is so that the player does not 
+# need to guess where the marker will end up at the end.
+# On stroke creation, Map will reset this ghost position to 
+# the marker actual, then move via trajectory
 
 func _physics_process(delta: float) -> void:
 	if remaining_distance > 0:
