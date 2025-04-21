@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://3ghhb13p6d2l"]
+[gd_scene load_steps=7 format=3 uid="uid://3ghhb13p6d2l"]
 
 [ext_resource type="Script" uid="uid://rm5qmuringpc" path="res://scripts/pen.gd" id="1_x0b4i"]
 [ext_resource type="Texture2D" uid="uid://d3g312iljjynv" path="res://assets/sprites/whiteboard_full.png" id="2_tyhvn"]
+[ext_resource type="PackedScene" uid="uid://bhhdh2judwcuk" path="res://scenes/tooltip_help.tscn" id="3_l7cr7"]
+[ext_resource type="FontFile" uid="uid://dwgfl4vwytg2c" path="res://Jacquard12-Regular.ttf" id="4_6c7qw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7jcs"]
 size = Vector2(483, 483)
+
+[sub_resource type="FontVariation" id="FontVariation_v4ktc"]
+base_font = ExtResource("4_6c7qw")
+spacing_glyph = -2
+spacing_top = -10
+spacing_bottom = -10
 
 [node name="Whiteboard" type="Area2D"]
 collision_layer = 128
@@ -18,6 +26,15 @@ texture = ExtResource("2_tyhvn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(824.5, 427.5)
 shape = SubResource("RectangleShape2D_c7jcs")
+
+[node name="TooltipHelp" parent="." instance=ExtResource("3_l7cr7")]
+offset_left = 602.0
+offset_top = 45.0
+offset_right = 1052.0
+offset_bottom = 199.0
+theme_override_fonts/font = SubResource("FontVariation_v4ktc")
+theme_override_font_sizes/font_size = 50
+autowrap_mode = 2
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

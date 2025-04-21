@@ -15,6 +15,8 @@ const COMPLEX_STRAIGHT_DEGREE_MIN = 50.0
 const COMPLEX_STRAIGHT_DEGREE_MAX = 180.0
 const strokescene = preload("res://scenes/stroke.tscn")
 
+@onready var tooltip = $TooltipHelp
+
 var is_first_incant = true
 
 signal submit_drawn_stroke
@@ -169,6 +171,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	
 	drawn_strokes.append(stroke)
 	
+	stroke.stroke_error.connect(Callable(self, "handle_stroke_error"))
 	if stroke_type == Globals.COMPLEX_STRAIGHT or stroke_type == Globals.CURVE:
 		new_drawn_stroke.emit()
 	
@@ -219,3 +222,6 @@ func dispel():
 	queue_redraw()
 	
 	new_drawn_stroke.emit()
+
+func handle_stroke_error(val: String):
+	tooltip.change_text(val)

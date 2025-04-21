@@ -14,6 +14,8 @@ var length = 0
 
 var connected_to: Array[Stroke] = []
 
+signal stroke_error(val: String)
+
 func create_stroke(substrokes: Array[Array]):
 	stroke_points = substrokes
 	var MaxX = 0
@@ -129,6 +131,7 @@ func verify(first):
 		
 		if len(connected_to) < 2:
 			print("ERROR: Connector has less than 2 connections")
+			stroke_error.emit("A connector needs at least 2 connections!")
 			return true
 		
 		var submitted_stroke_count = 0
@@ -137,6 +140,7 @@ func verify(first):
 		for i in connected_to:
 			if i.stroke_type == Globals.CONNECTOR:
 				print("ERROR: Connector connected to another connector")
+				stroke_error.emit("A connector cannot be bound to another connector!")
 				return true
 			
 			# Check if i is a drawn or submitted stroke
@@ -147,6 +151,7 @@ func verify(first):
 		
 		if submitted_stroke_count > 0 and drawn_stroke_count == 0:
 			print("ERROR: Connector only connected to submitted strokes")
+			stroke_error.emit("A connector cannot be bound to only incanted strokes!")
 			return true
 		
 	else:
@@ -159,16 +164,19 @@ func verify(first):
 		if not first:
 			if len(connected_to) == 0:
 				print("ERROR: Not first incant, stroke must have a connector")
+				stroke_error.emit("A stroke isn't bound to a connector!")
 				return true
 		
 		for i in connected_to:
 			if i.stroke_type != Globals.CONNECTOR:
 				print("ERROR: Stroke connected to another stroke")
+				stroke_error.emit("A stroke cannot be bound to another stroke!")
 				return true
 			
 			# Check if i is a submitted connector
 			if i.collision_layer == 2:
 				print("ERROR: Stroke connected to submitted connector")
+				stroke_error.emit("A stroke cannot be bound to an incanted connector!")
 				return true
 
 	return false
