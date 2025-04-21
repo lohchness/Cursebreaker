@@ -12,6 +12,22 @@ extends Node2D
 
 
 func _on_whiteboard_submit_drawn_stroke() -> void:
+	
+	var trajectory = calculate_trajectory()
+	
+	map.move_marker_actual(trajectory.x, trajectory.y)
+
+
+func _on_incant_button_pressed() -> void:
+	whiteboard.incant()
+
+func _on_dispel_button_pressed() -> void:
+	whiteboard.dispel()
+
+func _on_reset_button_pressed() -> void:
+	get_tree().reload_current_scene()
+
+func calculate_trajectory():
 	# Called just after whiteboard submission
 	# Iterate through each drawn stroke
 	#  If connector, nothing
@@ -46,14 +62,4 @@ func _on_whiteboard_submit_drawn_stroke() -> void:
 	total_x *= .4
 	total_y *= .4
 	
-	map.move_marker_actual(total_x, total_y)
-
-
-func _on_incant_button_pressed() -> void:
-	whiteboard.incant()
-
-func _on_dispel_button_pressed() -> void:
-	whiteboard.dispel()
-
-func _on_reset_button_pressed() -> void:
-	get_tree().reload_current_scene()
+	return Vector2(total_x, total_y)
