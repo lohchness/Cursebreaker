@@ -10,6 +10,14 @@ extends Node2D
 @onready var whiteboard = $Whiteboard
 @onready var map = $Map
 
+var num_hit = 0
+var num_targets = 0
+
+func _ready() -> void:
+	for i in $Targets.get_children():
+		i.connect("target_hit", check_key_unlocked)
+		num_targets += 1
+
 func _on_whiteboard_new_drawn_stroke() -> void:
 	var trajectory = calculate_trajectory()
 	
@@ -67,3 +75,8 @@ func calculate_trajectory():
 	total_y *= .4
 	
 	return Vector2(total_x, total_y)
+
+func check_key_unlocked():
+	num_hit += 1
+	if num_hit == num_targets:
+		whiteboard.handle_stroke_error("Curse broken!")

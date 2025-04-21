@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://w015m2tf04rx"]
+[gd_scene load_steps=8 format=3 uid="uid://w015m2tf04rx"]
 
 [ext_resource type="PackedScene" uid="uid://3ghhb13p6d2l" path="res://scenes/whiteboard.tscn" id="1_u52ul"]
 [ext_resource type="Script" uid="uid://c4yqadc08pa2x" path="res://scripts/level.gd" id="1_w8frs"]
 [ext_resource type="PackedScene" uid="uid://kxxki4i1p8uv" path="res://scenes/map.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://b5wo0gy13avw5" path="res://scenes/incant_button.tscn" id="4_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://bn10yt3y0tjpx" path="res://scenes/dispel_button.tscn" id="5_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://wsdpdrm1raeu" path="res://scenes/target.tscn" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://bl205u8p4n7wa" path="res://scenes/reset_button.tscn" id="7_klq6b"]
 
 [node name="Level" type="Node2D"]
@@ -39,6 +40,11 @@ offset_left = 998.0
 offset_top = 698.0
 offset_right = 1062.0
 offset_bottom = 761.0
+
+[node name="Targets" type="Node2D" parent="."]
+
+[node name="Target" parent="Targets" instance=ExtResource("6_2r41h")]
+position = Vector2(384, 498)
 
 [connection signal="new_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_new_drawn_stroke"]
 [connection signal="submit_drawn_stroke" from="Whiteboard" to="." method="_on_whiteboard_submit_drawn_stroke"]
