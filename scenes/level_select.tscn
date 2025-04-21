@@ -38,73 +38,106 @@ offset_right = 305.0
 offset_bottom = 158.0
 texture_normal = ExtResource("4_chg43")
 
-[node name="Level1" type="Button" parent="."]
+[node name="Level1" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 176.0
-offset_top = 208.0
-offset_right = 357.0
+offset_left = 172.0
+offset_top = 211.0
+offset_right = 365.0
 offset_bottom = 342.0
+
+[node name="Label" type="Label" parent="Level1"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = -6.0
+offset_right = 132.0
+offset_bottom = 120.0
 theme_override_fonts/font = ExtResource("5_r77uv")
 theme_override_font_sizes/font_size = 126
 text = "1"
-flat = true
 
-[node name="Level2" type="Button" parent="."]
-offset_left = 463.0
+[node name="Level2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 460.0
 offset_top = 202.0
-offset_right = 669.0
-offset_bottom = 336.0
+offset_right = 675.0
+offset_bottom = 347.0
+
+[node name="Label" type="Label" parent="Level2"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 1.0
+offset_right = 135.0
+offset_bottom = 127.0
 theme_override_fonts/font = ExtResource("5_r77uv")
 theme_override_font_sizes/font_size = 126
 text = "2"
-flat = true
 
-[node name="Level3" type="Button" parent="."]
-offset_left = 757.0
-offset_top = 218.0
-offset_right = 913.0
-offset_bottom = 378.0
+[node name="Level3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 762.0
+offset_top = 253.0
+offset_right = 924.0
+offset_bottom = 384.0
+
+[node name="Label" type="Label" parent="Level3"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -6.0
+offset_right = 108.0
+offset_bottom = 120.0
 theme_override_fonts/font = ExtResource("5_r77uv")
 theme_override_font_sizes/font_size = 126
 text = "3"
-flat = true
 
-[node name="Level4" type="Button" parent="."]
-offset_left = 703.0
-offset_top = 454.0
-offset_right = 913.0
-offset_bottom = 588.0
+[node name="Level4" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 697.0
+offset_top = 494.0
+offset_right = 917.0
+offset_bottom = 591.0
+
+[node name="Label" type="Label" parent="Level4"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = -24.0
+offset_right = 133.0
+offset_bottom = 102.0
 theme_override_fonts/font = ExtResource("5_r77uv")
 theme_override_font_sizes/font_size = 126
 text = "4"
-flat = true
 
-[node name="Level5" type="Button" parent="."]
-offset_left = 361.0
-offset_top = 465.0
-offset_right = 571.0
-offset_bottom = 599.0
+[node name="Level5" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 475.0
+offset_right = 559.0
+offset_bottom = 606.0
+
+[node name="Label" type="Label" parent="Level5"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = -5.0
+offset_right = 124.0
+offset_bottom = 121.0
 theme_override_fonts/font = ExtResource("5_r77uv")
 theme_override_font_sizes/font_size = 126
 text = "5"
-flat = true
 
-[node name="Level6" type="Button" parent="."]
-offset_left = 582.0
-offset_top = 665.0
-offset_right = 792.0
-offset_bottom = 799.0
+[node name="Level6" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 699.0
+offset_right = 928.0
+offset_bottom = 764.0
+
+[node name="Label" type="Label" parent="Level6"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = -29.0
+offset_right = 233.0
+offset_bottom = 97.0
 theme_override_fonts/font = ExtResource("5_r77uv")
 theme_override_font_sizes/font_size = 126
 text = "6"
-flat = true
 
-[node name="Level7" type="Button" parent="."]
-offset_left = 582.0
-offset_top = 665.0
-offset_right = 792.0
-offset_bottom = 799.0
-theme_override_fonts/font = ExtResource("5_r77uv")
-theme_override_font_sizes/font_size = 126
-text = "6"
-flat = true
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
