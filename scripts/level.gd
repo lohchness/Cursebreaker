@@ -44,3 +44,7 @@ func _on_whiteboard_submit_drawn_stroke() -> void:
 	var total_y = total_width - total_height
 	
 	map.move_marker_actual(total_x, total_y)
+
+
+func _on_incant_button_pressed() -> void:
+	whiteboard.incant()
