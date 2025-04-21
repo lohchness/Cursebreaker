@@ -10,7 +10,6 @@ extends Node2D
 @onready var whiteboard = $Whiteboard
 @onready var map = $Map
 
-
 func _on_whiteboard_new_drawn_stroke() -> void:
 	var trajectory = calculate_trajectory()
 	
