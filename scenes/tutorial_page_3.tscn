@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ejm8v30iv13"]
+
+[ext_resource type="Script" uid="uid://d07c2aturidl1" path="res://scripts/tutorial_page_3.gd" id="1_cvwpw"]
+[ext_resource type="Texture2D" uid="uid://cdp6qgxghn7m4" path="res://assets/sprites/Guide2.png" id="1_fosdy"]
+[ext_resource type="Texture2D" uid="uid://dx2ho4adb1bqe" path="res://assets/sprites/Guide2_2.png" id="2_cvwpw"]
+
+[node name="TutorialPage3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cvwpw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_fosdy")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_cvwpw")

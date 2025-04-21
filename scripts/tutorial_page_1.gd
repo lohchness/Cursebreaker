@@ -7,4 +7,4 @@ func _input(event: InputEvent) -> void:
 		if texturerect3.visible == false:
 			texturerect3.visible = true
 		else:
-			get_tree().change_scene_to_file("res://scenes/tutorial_page_1.tscn")
+			get_tree().change_scene_to_file("res://scenes/tutorial_page_2.tscn")
