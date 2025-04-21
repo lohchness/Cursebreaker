@@ -23,5 +23,24 @@ func _on_whiteboard_submit_drawn_stroke() -> void:
 	#  Difference in width and height is how far it goes up and down
 	# Send this data to Map
 	
+	var total_width = 0
+	var total_height = 0
+	var length_sharp = 0
+	var length_curve = 0
 	
-	pass # Replace with function body.
+	for stroke: Stroke in whiteboard.drawn_strokes:
+		if stroke.stroke_type == Globals.CONNECTOR:
+			continue
+		
+		if stroke.stroke_type == Globals.COMPLEX_STRAIGHT:
+			length_sharp += stroke.length
+		elif stroke.stroke_type == Globals.CURVE:
+			length_curve += stroke.length
+		
+		total_width += stroke.stroke_width
+		total_height += stroke.stroke_height
+	
+	var total_x = length_sharp - length_curve
+	var total_y = total_width - total_height
+	
+	map.move_marker_actual(total_x, total_y)
