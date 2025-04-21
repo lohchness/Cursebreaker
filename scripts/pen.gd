@@ -83,23 +83,23 @@ func _input(event: InputEvent) -> void:
 		queue_redraw()
 	
 	if event.is_action_pressed("incant"):
-		
-		if verify_drawn_strokes():
-			# There is an error in drawn strokes
-			for i in range(len(drawn_strokes)):
-				drawn_strokes[i].queue_free()
-		else:
-			for i in range(len(drawn_strokes)):
-				drawn_strokes[i].move_to_submitted()
-			# Append drawn_strokes to submitted_strokes
-			submitted_strokes.append_array(drawn_strokes)
+		if (len(drawn_strokes) > 0):
+			if verify_drawn_strokes():
+				# There is an error in drawn strokes
+				for i in range(len(drawn_strokes)):
+					drawn_strokes[i].queue_free()
+			else:
+				for i in range(len(drawn_strokes)):
+					drawn_strokes[i].move_to_submitted()
+				# Append drawn_strokes to submitted_strokes
+				submitted_strokes.append_array(drawn_strokes)
+				
+				is_first_incant = false
+				
+				submit_drawn_stroke.emit()
 			
-			is_first_incant = false
-			
-			submit_drawn_stroke.emit()
-		
-		drawn_strokes = []
-		queue_redraw()
+			drawn_strokes = []
+			queue_redraw()
 
 func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 	var substrokes: Array[Array] = [[]] # Only complex straight lines will have more than 1 element
