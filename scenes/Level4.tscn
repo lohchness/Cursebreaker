@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6fm4o100nw4g"]
+
+[ext_resource type="PackedScene" uid="uid://w015m2tf04rx" path="res://scenes/level.tscn" id="1_1ank6"]
+[ext_resource type="PackedScene" uid="uid://wsdpdrm1raeu" path="res://scenes/target.tscn" id="2_edif7"]
+
+[node name="Level" instance=ExtResource("1_1ank6")]
+metadata/_edit_horizontal_guides_ = [425.0]
+metadata/_edit_vertical_guides_ = [281.0]
+
+[node name="Target" parent="Targets" index="0" instance=ExtResource("2_edif7")]
+position = Vector2(149, 460)
+
+[node name="Target2" parent="Targets" index="1" instance=ExtResource("2_edif7")]
+position = Vector2(304, 516)
+
+[node name="Target3" parent="Targets" index="2" instance=ExtResource("2_edif7")]
+position = Vector2(218, 286)
+
+[node name="Target4" parent="Targets" index="3" instance=ExtResource("2_edif7")]
+position = Vector2(399, 319)
