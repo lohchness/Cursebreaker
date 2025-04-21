@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="WritingDetection"
-run/main_scene="uid://w015m2tf04rx"
+run/main_scene="uid://crrw1hab5238c"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
