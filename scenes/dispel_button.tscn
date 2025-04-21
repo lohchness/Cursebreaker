@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn10yt3y0tjpx"]
+
+[ext_resource type="Texture2D" uid="uid://u3g7c8hyynn4" path="res://assets/sprites/dispel.png" id="1_nldl8"]
+
+[node name="dispel_button" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_nldl8")
