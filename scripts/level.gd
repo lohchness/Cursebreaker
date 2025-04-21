@@ -43,6 +43,9 @@ func _on_whiteboard_submit_drawn_stroke() -> void:
 	var total_x = length_sharp - length_curve
 	var total_y = total_width - total_height
 	
+	total_x *= .4
+	total_y *= .4
+	
 	map.move_marker_actual(total_x, total_y)
 
 
