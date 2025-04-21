@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl205u8p4n7wa"]
+
+[ext_resource type="Texture2D" uid="uid://r5k2pumdit3q" path="res://assets/sprites/reset.png" id="1_m0ji7"]
+
+[node name="reset_button" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_m0ji7")
