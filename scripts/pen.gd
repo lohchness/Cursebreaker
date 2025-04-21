@@ -76,11 +76,7 @@ func brush_release():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("dispel"):
-		# Free strokes in drawn_strokes and empty array
-		for i in range(len(drawn_strokes)):
-			drawn_strokes[i].queue_free()
-		drawn_strokes = []
-		queue_redraw()
+		dispel()
 	
 	if event.is_action_pressed("incant"):
 		incant()
@@ -210,3 +206,10 @@ func incant():
 		
 		drawn_strokes = []
 		queue_redraw()
+
+func dispel():
+# Free strokes in drawn_strokes and empty array
+	for i in range(len(drawn_strokes)):
+		drawn_strokes[i].queue_free()
+	drawn_strokes = []
+	queue_redraw()

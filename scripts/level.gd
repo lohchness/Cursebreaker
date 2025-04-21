@@ -48,3 +48,6 @@ func _on_whiteboard_submit_drawn_stroke() -> void:
 
 func _on_incant_button_pressed() -> void:
 	whiteboard.incant()
+
+func _on_dispel_button_pressed() -> void:
+	whiteboard.dispel()
