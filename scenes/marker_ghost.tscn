@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlujoo7mf6v22"]
+
+[ext_resource type="Texture2D" uid="uid://2q41n2el1gt8" path="res://assets/sprites/marker.png" id="1_b3fkb"]
+[ext_resource type="Script" uid="uid://bji7schbt7tis" path="res://scripts/marker_ghost.gd" id="1_bml33"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bml33"]
+radius = 9.0
+
+[node name="marker_ghost" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_bml33")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.305882)
+texture = ExtResource("1_b3fkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bml33")
