@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyrc4m360r256"]
+
+[ext_resource type="PackedScene" uid="uid://w015m2tf04rx" path="res://scenes/level.tscn" id="1_kkoku"]
+[ext_resource type="PackedScene" uid="uid://wsdpdrm1raeu" path="res://scenes/target.tscn" id="2_l6gr7"]
+
+[node name="Level" instance=ExtResource("1_kkoku")]
+metadata/_edit_horizontal_guides_ = [347.0]
+metadata/_edit_vertical_guides_ = [281.0]
+
+[node name="Target" parent="Targets" index="0" instance=ExtResource("2_l6gr7")]
+position = Vector2(403, 347)
+
+[node name="Target2" parent="Targets" index="1" instance=ExtResource("2_l6gr7")]
+position = Vector2(281, 347)
+
+[node name="Target3" parent="Targets" index="2" instance=ExtResource("2_l6gr7")]
+position = Vector2(145, 347)
