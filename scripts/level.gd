@@ -7,6 +7,8 @@ extends Node2D
 # Holds level name
 
 @export var levelname: String = ""
+@export var next: PackedScene
+
 @onready var whiteboard = $Whiteboard
 @onready var map = $Map
 
@@ -80,3 +82,11 @@ func check_key_unlocked():
 	num_hit += 1
 	if num_hit == num_targets:
 		whiteboard.handle_stroke_error("Curse broken!")
+		$IncantButton.visible = false
+		$dispel_button.visible = false
+		$reset_button.visible = false
+		
+		$NextButton.visible = true
+
+func _on_next_button_pressed() -> void:
+	get_tree().change_scene_to_packed(next)

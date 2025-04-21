@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ovin5x3u6n8b"]
+
+[ext_resource type="Texture2D" uid="uid://y8qrbqs301ly" path="res://assets/sprites/next.png" id="1_go7sm"]
+
+[node name="NextButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_go7sm")
