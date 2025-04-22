@@ -1,11 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://s00l5vnndmir"]
+[gd_scene load_steps=11 format=3 uid="uid://s00l5vnndmir"]
 
 [ext_resource type="PackedScene" uid="uid://w015m2tf04rx" path="res://scenes/level.tscn" id="1_bwv4p"]
 [ext_resource type="PackedScene" uid="uid://cyrc4m360r256" path="res://scenes/Level2.tscn" id="2_dw26h"]
 [ext_resource type="PackedScene" uid="uid://wsdpdrm1raeu" path="res://scenes/target.tscn" id="2_odhdn"]
+[ext_resource type="AudioStream" uid="uid://be5judh1v4oaw" path="res://assets/sfx/slide1.ogg" id="3_kbo48"]
+[ext_resource type="AudioStream" uid="uid://dlyoivd28ias5" path="res://assets/sfx/slide2.ogg" id="4_4dyl1"]
+[ext_resource type="AudioStream" uid="uid://cf2fkygnxxcnu" path="res://assets/sfx/slide3.ogg" id="5_jxjwb"]
+[ext_resource type="AudioStream" uid="uid://c51s82dit7jr0" path="res://assets/sfx/slide4.ogg" id="6_2meft"]
+[ext_resource type="AudioStream" uid="uid://pt3l4mtpb6ho" path="res://assets/sfx/slide5.ogg" id="7_0xqs2"]
+[ext_resource type="AudioStream" uid="uid://c18fxwu5ypqrc" path="res://assets/sfx/slide6.ogg" id="8_ipmer"]
+[ext_resource type="AudioStream" uid="uid://mwaqv08c7bbo" path="res://assets/sfx/slide7.ogg" id="9_av1gt"]
 
 [node name="Level" instance=ExtResource("1_bwv4p")]
 next = ExtResource("2_dw26h")
+
+[node name="Whiteboard" parent="." index="1"]
+slide_sound = Array[AudioStream]([ExtResource("3_kbo48"), ExtResource("4_4dyl1"), ExtResource("5_jxjwb"), ExtResource("6_2meft"), ExtResource("7_0xqs2"), ExtResource("8_ipmer"), ExtResource("9_av1gt")])
 
 [node name="Target" parent="Targets" index="0" instance=ExtResource("2_odhdn")]
 position = Vector2(343, 482)
