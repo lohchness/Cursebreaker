@@ -70,17 +70,17 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			brush_release()
 	
 	if in_motion and event is InputEventMouseMotion:
-		if slide_cd.is_stopped():
-			play_sound(slide_sound.pick_random())
-			slide_cd.start()
+		#if slide_cd.is_stopped():
+			#play_sound(slide_sound.pick_random())
+			#slide_cd.start()
 		
 		if last_pos.distance_to(event.position) > segment_max_distance:
 			last_pos = event.position
 			curr_stroke_points.append(last_pos)
 			
-			#if slide_cd.is_stopped():
-				#play_sound(slide_sound.pick_random())
-				#slide_cd.start()
+			if slide_cd.is_stopped():
+				play_sound(slide_sound.pick_random())
+				slide_cd.start()
 			
 			queue_redraw()
 
