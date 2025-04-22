@@ -21,7 +21,8 @@ var polyphone_player: AudioStreamPlayer2D
 var polyphonic: AudioStreamPlaybackPolyphonic
 
 @export var hit_sound: AudioStream
-@export var slide_sound: AudioStream
+@export var slide_sound: Array[AudioStream]
+@onready var slide_cd = $SlideSoundCooldown
 
 var is_first_incant = true
 var verify_first_incant = true
@@ -31,11 +32,8 @@ signal new_drawn_stroke
 
 func _ready() -> void:
 	polyphone_player = $AudioStreamPlayer2D
-	polyphone_player.play()
+	polyphone_player.play() # need to play to get polyphonic stream playback
 	polyphonic = polyphone_player.get_stream_playback()
-	
-	assert(polyphonic != null)
-	
 
 func _draw():
 	# Draw every submitted stroke
@@ -72,14 +70,20 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			brush_release()
 	
 	if in_motion and event is InputEventMouseMotion:
+		if slide_cd.is_stopped():
+			play_sound(slide_sound.pick_random())
+			slide_cd.start()
 		
 		if last_pos.distance_to(event.position) > segment_max_distance:
 			last_pos = event.position
 			curr_stroke_points.append(last_pos)
 			
-			play_sound(slide_sound)
+			#if slide_cd.is_stopped():
+				#play_sound(slide_sound.pick_random())
+				#slide_cd.start()
 			
 			queue_redraw()
+
 
 func _on_mouse_exited() -> void:
 	brush_release()
