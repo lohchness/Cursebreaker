@@ -87,6 +87,7 @@ func check_key_unlocked():
 		$reset_button.visible = false
 		
 		$NextButton.visible = true
+		$AudioStreamPlayer2D.play()
 
 func _on_next_button_pressed() -> void:
 	get_tree().change_scene_to_packed(next)
