@@ -18,6 +18,7 @@ const strokescene = preload("res://scenes/stroke.tscn")
 @onready var tooltip = $TooltipHelp
 
 var is_first_incant = true
+var verify_first_incant = true
 
 signal submit_drawn_stroke
 signal new_drawn_stroke
@@ -207,12 +208,18 @@ func incant():
 			# There is an error in drawn strokes
 			for i in range(len(drawn_strokes)):
 				drawn_strokes[i].queue_free()
+			
+			# If it was first incant, then make is_first_incant true again
+			if verify_first_incant:
+				is_first_incant = true
 		else:
+			
 			for i in range(len(drawn_strokes)):
 				drawn_strokes[i].move_to_submitted()
 			# Append drawn_strokes to submitted_strokes
 			submitted_strokes.append_array(drawn_strokes)
 			
+			verify_first_incant = false
 			is_first_incant = false
 			
 			submit_drawn_stroke.emit()
