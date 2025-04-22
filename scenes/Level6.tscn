@@ -10,10 +10,10 @@ metadata/_edit_vertical_guides_ = [165.0, 418.0]
 metadata/_edit_horizontal_guides_ = [425.0, 514.0, 295.0]
 
 [node name="ColorRect" parent="." index="0"]
-offset_left = -40.0
-offset_top = 42.0
-offset_right = 1127.0
-offset_bottom = 939.0
+offset_left = -39.0
+offset_top = -17.0
+offset_right = 1128.0
+offset_bottom = 880.0
 
 [node name="Target" parent="Targets" index="0" instance=ExtResource("2_c55bh")]
 position = Vector2(181, 535)
