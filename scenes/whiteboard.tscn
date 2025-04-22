@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://3ghhb13p6d2l"]
+[gd_scene load_steps=13 format=3 uid="uid://3ghhb13p6d2l"]
 
 [ext_resource type="Script" uid="uid://rm5qmuringpc" path="res://scripts/pen.gd" id="1_x0b4i"]
 [ext_resource type="Texture2D" uid="uid://d3g312iljjynv" path="res://assets/sprites/whiteboard_full.png" id="2_tyhvn"]
 [ext_resource type="PackedScene" uid="uid://bhhdh2judwcuk" path="res://scenes/tooltip_help.tscn" id="3_l7cr7"]
 [ext_resource type="FontFile" uid="uid://dwgfl4vwytg2c" path="res://Jacquard12-Regular.ttf" id="4_6c7qw"]
+[ext_resource type="AudioStream" uid="uid://dlyoivd28ias5" path="res://assets/sfx/slide2.ogg" id="4_6csdu"]
 [ext_resource type="AudioStream" uid="uid://dvjmhwwha4k5c" path="res://assets/sfx/hit1.ogg" id="5_6c7qw"]
+[ext_resource type="AudioStream" uid="uid://cf2fkygnxxcnu" path="res://assets/sfx/slide3.ogg" id="5_k4d01"]
+[ext_resource type="AudioStream" uid="uid://c51s82dit7jr0" path="res://assets/sfx/slide4.ogg" id="6_rt2be"]
 [ext_resource type="AudioStream" uid="uid://be5judh1v4oaw" path="res://assets/sfx/slide1.ogg" id="6_v4ktc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7jcs"]
@@ -23,7 +26,7 @@ collision_layer = 128
 collision_mask = 0
 script = ExtResource("1_x0b4i")
 hit_sound = ExtResource("5_6c7qw")
-slide_sound = ExtResource("6_v4ktc")
+slide_sound = Array[AudioStream]([ExtResource("6_v4ktc"), ExtResource("4_6csdu"), ExtResource("5_k4d01"), ExtResource("6_rt2be")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(560, 420)
@@ -44,6 +47,11 @@ autowrap_mode = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamPolyphonic_v4ktc")
+volume_db = -7.0
+
+[node name="SlideSoundCooldown" type="Timer" parent="."]
+wait_time = 0.07
+one_shot = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
