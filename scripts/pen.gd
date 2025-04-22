@@ -17,11 +17,25 @@ const strokescene = preload("res://scenes/stroke.tscn")
 
 @onready var tooltip = $TooltipHelp
 
+var polyphone_player: AudioStreamPlayer2D
+var polyphonic: AudioStreamPlaybackPolyphonic
+
+@export var hit_sound: AudioStream
+@export var slide_sound: AudioStream
+
 var is_first_incant = true
 var verify_first_incant = true
 
 signal submit_drawn_stroke
 signal new_drawn_stroke
+
+func _ready() -> void:
+	polyphone_player = $AudioStreamPlayer2D
+	polyphone_player.play()
+	polyphonic = polyphone_player.get_stream_playback()
+	
+	assert(polyphonic != null)
+	
 
 func _draw():
 	# Draw every submitted stroke
@@ -52,13 +66,18 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			last_pos = event.position
 			curr_stroke_points.append(event.position)
 			
+			play_sound(hit_sound)
+			
 		if event.is_action_released("brush"):
 			brush_release()
 	
 	if in_motion and event is InputEventMouseMotion:
+		
 		if last_pos.distance_to(event.position) > segment_max_distance:
 			last_pos = event.position
 			curr_stroke_points.append(last_pos)
+			
+			play_sound(slide_sound)
 			
 			queue_redraw()
 
@@ -237,3 +256,6 @@ func dispel():
 
 func handle_stroke_error(val: String):
 	tooltip.change_text(val)
+
+func play_sound(sound: AudioStream):
+	polyphonic.play_stream(sound)
