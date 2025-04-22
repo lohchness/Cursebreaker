@@ -170,7 +170,7 @@ func classify_stroke(stroke_points: Array[Vector2]) -> Stroke:
 			handle_stroke_error("Your curve is too short!")
 	
 	if stroke_type == Globals.SIMPLE_STRAIGHT:
-		if pixel_length(substrokes[-1]) >= 120 and pixel_length(substrokes[-1]) < 200:
+		if pixel_length(substrokes[-1]) >= 120: # and pixel_length(substrokes[-1]) < 200:
 			stroke_type = Globals.INVALID
 			handle_stroke_error("Your connector is too long!")
 		elif pixel_length(substrokes[-1]) < 120:
