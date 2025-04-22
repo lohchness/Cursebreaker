@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://duglh3i02ggy2"]
+[gd_scene load_steps=4 format=3 uid="uid://duglh3i02ggy2"]
 
+[ext_resource type="Shader" uid="uid://dcuass2hcsvoj" path="res://scripts/blotchyaura.gdshader" id="1_1ckue"]
 [ext_resource type="Script" uid="uid://daliidbfgsf0u" path="res://scripts/stroke.gd" id="1_k1uwf"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a402u"]
+shader = ExtResource("1_1ckue")
+shader_parameter/maxLineWidth = 10.0
+shader_parameter/minLineWidth = 5.0
+shader_parameter/speed = 1.0
+shader_parameter/blockSize = 20.0
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.0
+
 [node name="Stroke" type="Area2D"]
+material = SubResource("ShaderMaterial_a402u")
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_k1uwf")
