@@ -206,8 +206,7 @@ func incant():
 	if (len(drawn_strokes) > 0):
 		if verify_drawn_strokes():
 			# There is an error in drawn strokes
-			for i in range(len(drawn_strokes)):
-				drawn_strokes[i].queue_free()
+			dispel()
 			
 			# If it was first incant, then make is_first_incant true again
 			if verify_first_incant:
