@@ -25,6 +25,3 @@ position = Vector2(226, 367)
 
 [node name="Target3" parent="Targets" index="2" instance=ExtResource("2_odhdn")]
 position = Vector2(158, 280)
-
-[node name="AudioStreamPlayer2D" parent="." index="9"]
-volume_db = 0.0
